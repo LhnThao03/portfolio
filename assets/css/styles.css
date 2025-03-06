@@ -13,6 +13,7 @@
     --light-text: #ffffff;
     --dark-bg: #1a1a1a;
     --card-bg: rgba(255, 255, 255, 0.95);
+    --highlight-color: #ff6b6b;
 }
 
 body {
@@ -84,12 +85,44 @@ nav {
     left: 0;
     width: 0;
     height: 2px;
-    background: currentColor;
+    background: var(--text-color);
     transition: width 0.3s ease;
 }
 
 .nav-links li a:hover::after {
     width: 100%;
+}
+
+/* Thêm vào phần nav-links styles */
+.nav-links li a.active {
+    color: var(--text-color);
+}
+
+header.scrolled .nav-links li a.active {
+    color: var(--text-color);
+}
+
+/* Điều chỉnh style cho underline */
+.nav-links li a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--text-color);
+    transition: width 0.3s ease;
+}
+
+/* Hiển thị gạch chân khi hover và active */
+.nav-links li a:hover::after,
+.nav-links li a.active::after {
+    width: 100%;
+}
+
+/* Xóa hiệu ứng glow không cần thiết */
+.nav-links li a.active::after {
+    box-shadow: none;
 }
 
 /* Hero Section */
@@ -402,4 +435,15 @@ footer {
         margin: 0 auto;
         max-width: 400px;
     }
+}
+
+/* Thêm vào phần general styles */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Điều chỉnh padding-top cho các section để tránh header che mất nội dung */
+section:not(.hero) {
+    padding-top: 100px;
+    margin-top: -20px;
 }
