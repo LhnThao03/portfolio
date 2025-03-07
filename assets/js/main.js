@@ -47,4 +47,24 @@ window.addEventListener('scroll', () => {
             link.classList.add('active');
         }
     });
-}); 
+});
+
+// Section slide in animation
+function checkSlide() {
+    const sections = document.querySelectorAll('.slide-section');
+    
+    sections.forEach(section => {
+        const slideInAt = (window.scrollY + window.innerHeight) - section.offsetHeight / 4;
+        const sectionBottom = section.offsetTop + section.offsetHeight;
+        const isHalfShown = slideInAt > section.offsetTop;
+        const isNotScrolledPast = window.scrollY < sectionBottom;
+        
+        if (isHalfShown && isNotScrolledPast) {
+            section.classList.add('show');
+        }
+    });
+}
+
+window.addEventListener('scroll', checkSlide);
+// Check on load
+window.addEventListener('load', checkSlide); 

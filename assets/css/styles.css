@@ -136,11 +136,15 @@ header.scrolled .nav-links li a.active {
     color: var(--light-text);
     text-align: center;
     position: relative;
+    margin-bottom: 20px;
 }
 
 .hero-content {
     max-width: 900px;
     padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .hero-content h1 {
@@ -186,6 +190,27 @@ header.scrolled .nav-links li a.active {
 .cta-button:hover, .cv-button:hover {
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--light-text);
+    margin-bottom: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.avatar:hover img {
+    transform: scale(1.1);
 }
 
 /* About Section */
@@ -435,6 +460,11 @@ footer {
         margin: 0 auto;
         max-width: 400px;
     }
+    
+    .avatar {
+        width: 150px;
+        height: 150px;
+    }
 }
 
 /* Thêm vào phần general styles */
@@ -446,4 +476,16 @@ html {
 section:not(.hero) {
     padding-top: 100px;
     margin-top: -20px;
+}
+
+/* Section slide in animation */
+.slide-section {
+    opacity: 0;
+    transform: translateY(100px);
+    transition: all 1s ease;
+}
+
+.slide-section.show {
+    opacity: 1;
+    transform: translateY(0);
 }
