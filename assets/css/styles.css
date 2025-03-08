@@ -200,6 +200,11 @@ header.scrolled .nav-links li a.active {
     border: 4px solid var(--light-text);
     margin-bottom: 2rem;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.5s ease;
+}
+
+.avatar:hover {
+    border-radius: 15px;
 }
 
 .avatar img {
@@ -216,13 +221,12 @@ header.scrolled .nav-links li a.active {
 /* About Section */
 .about {
     background: var(--light-text);
-    padding: 8rem 5%;
+    padding: 4rem 5%;
 }
 
 .about-content {
     max-width: 800px;
     margin: 0 auto;
-    text-align: center;
 }
 
 .about h2 {
@@ -230,6 +234,10 @@ header.scrolled .nav-links li a.active {
     margin-bottom: 2rem;
     text-align: center;
     color: var(--text-color);
+}
+
+.about-text {
+    text-align: left;
 }
 
 .about-text p {
@@ -242,13 +250,13 @@ header.scrolled .nav-links li a.active {
 /* Skills Section */
 .skills {
     background: #f8f9fa;
-    padding: 8rem 5%;
+    padding: 4rem 5%;
 }
 
 .skills h2 {
     font-size: 2.5rem;
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
 }
 
 .skills-container {
@@ -258,9 +266,9 @@ header.scrolled .nav-links li a.active {
 
 .skill-item {
     background: var(--card-bg);
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 15px;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease;
 }
@@ -292,20 +300,20 @@ header.scrolled .nav-links li a.active {
 
 /* Projects Section */
 .projects {
-    padding: 8rem 5%;
+    padding: 4rem 5%;
     background: var(--light-text);
 }
 
 .projects h2 {
     font-size: 2.5rem;
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
 }
 
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2.5rem;
+    gap: 1.5rem;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -330,7 +338,10 @@ header.scrolled .nav-links li a.active {
 }
 
 .project-info {
-    padding: 2rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .project-info h3 {
@@ -341,7 +352,7 @@ header.scrolled .nav-links li a.active {
 
 .project-info p {
     color: #666;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
     line-height: 1.6;
 }
 
@@ -364,16 +375,104 @@ header.scrolled .nav-links li a.active {
     color: var(--gradient-end);
 }
 
+.project-tech {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+    font-size: 1.5rem;
+}
+
+.project-tech i {
+    position: relative;
+    cursor: pointer;
+}
+
+/* Màu mặc định cho từng icon */
+.project-tech .fa-python {
+    color: #3776AB;  /* Màu Python */
+}
+
+.project-tech .fa-gamepad {
+    color: #FF3366;  /* Màu đỏ cho Pygame */
+}
+
+.project-tech .fa-code {
+    color: #333333;  /* Màu xám đậm cho OOP */
+}
+
+.project-tech .fa-java {
+    color: #007396;  /* Màu Java */
+}
+
+.project-tech .fa-database {
+    color: #4479A1;  /* Màu MySQL */
+}
+
+.project-tech .fa-window-maximize {
+    color: #5C2D91;  /* Màu tím cho Swing */
+}
+
+/* Thêm màu cho các icon mới */
+.project-tech .fa-php {
+    color: #777BB4;  /* Màu PHP */
+}
+
+.project-tech .fa-html5 {
+    color: #E34F26;  /* Màu HTML5 */
+}
+
+.project-tech .fa-css3-alt {
+    color: #1572B6;  /* Màu CSS3 */
+}
+
+.project-tech .fa-bootstrap {
+    color: #7952B3;  /* Màu Bootstrap */
+}
+
+.project-tech .fa-js {
+    color: #F7DF1E;  /* Màu JavaScript */
+}
+
+/* Tooltip styles */
+.project-tech i::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 10px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+/* Show tooltip on hover */
+.project-tech i:hover::after {
+    visibility: visible;
+    opacity: 1;
+    bottom: 140%;
+}
+
+/* Keep the hover animation */
+.project-tech i:hover {
+    transform: translateY(-3px);
+}
+
 /* Contact Section */
 .contact {
     background: #f8f9fa;
-    padding: 8rem 5%;
+    padding: 4rem 5%;
 }
 
 .contact h2 {
     font-size: 2.5rem;
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
 }
 
 .contact-content {
@@ -383,13 +482,13 @@ header.scrolled .nav-links li a.active {
 
 .contact-info {
     display: grid;
-    gap: 2rem;
+    gap: 1rem;
     margin-bottom: 3rem;
 }
 
 .contact-item {
     background: var(--card-bg);
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 15px;
     display: flex;
     align-items: center;
@@ -411,7 +510,7 @@ header.scrolled .nav-links li a.active {
     display: flex;
     justify-content: center;
     gap: 2rem;
-    margin-top: 3rem;
+    margin-top: 2rem;
 }
 
 .social-links a {
@@ -430,7 +529,7 @@ footer {
     background: var(--dark-bg);
     color: var(--light-text);
     text-align: center;
-    padding: 2rem;
+    padding: 1.5rem;
 }
 
 /* Responsive Design */
@@ -474,8 +573,8 @@ html {
 
 /* Điều chỉnh padding-top cho các section để tránh header che mất nội dung */
 section:not(.hero) {
-    padding-top: 100px;
-    margin-top: -20px;
+    padding-top: 80px;
+    margin-top: -10px;
 }
 
 /* Section slide in animation */

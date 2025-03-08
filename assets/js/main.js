@@ -1,11 +1,11 @@
-// Smooth scrolling for navigation links
-document.querySelectorAll('.nav-links a').forEach(link => {
+// Smooth scrolling for navigation links and contact button
+document.querySelectorAll('.nav-links a, .cta-button').forEach(link => {
     link.addEventListener('click', function(e) {
         e.preventDefault();
         
         const targetId = this.getAttribute('href');
         const targetSection = document.querySelector(targetId);
-        const headerOffset = 80; // Điều chỉnh offset để tránh header che mất nội dung
+        const headerOffset = 80;
         const elementPosition = targetSection.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -13,6 +13,11 @@ document.querySelectorAll('.nav-links a').forEach(link => {
             top: offsetPosition,
             behavior: 'smooth'
         });
+
+        // Xóa hash khỏi URL sau khi scroll
+        if (window.history && window.history.pushState) {
+            window.history.pushState("", document.title, window.location.pathname);
+        }
     });
 });
 
@@ -32,14 +37,22 @@ const navLinks = document.querySelectorAll('.nav-links a');
 
 window.addEventListener('scroll', () => {
     let current = '';
+    const scrollPosition = window.pageYOffset;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
     
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (pageYOffset >= sectionTop - 150) {
-            current = section.getAttribute('id');
-        }
-    });
+    // Kiểm tra nếu đã cuộn đến cuối trang
+    if (scrollPosition + windowHeight >= documentHeight - 100) {
+        current = 'contact';
+    } else {
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (scrollPosition >= sectionTop - 150) {
+                current = section.getAttribute('id');
+            }
+        });
+    }
 
     navLinks.forEach(link => {
         link.classList.remove('active');
