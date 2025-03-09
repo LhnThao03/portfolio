@@ -127,7 +127,7 @@ header.scrolled .nav-links li a.active {
 
 /* Hero Section */
 .hero {
-    min-height: 100vh;
+    height: 100vh;
     width: 100%;
     display: flex;
     align-items: center;
@@ -136,7 +136,8 @@ header.scrolled .nav-links li a.active {
     color: var(--light-text);
     text-align: center;
     position: relative;
-    margin-bottom: 20px;
+    overflow: hidden;
+    margin-bottom: 10px;
 }
 
 .hero-content {
@@ -145,6 +146,7 @@ header.scrolled .nav-links li a.active {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 80px;
 }
 
 .hero-content h1 {
@@ -192,30 +194,50 @@ header.scrolled .nav-links li a.active {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.avatar {
+/* Avatar styles */
+.avatar-container {
     width: 200px;
     height: 200px;
+    margin-bottom: 2rem;
+    perspective: 1000px;
+}
+
+.avatar-flip {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.avatar-container:hover .avatar-flip {
+    transform: rotateY(180deg);
+}
+
+.avatar-front, .avatar-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
     border-radius: 50%;
     overflow: hidden;
     border: 4px solid var(--light-text);
-    margin-bottom: 2rem;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    transition: all 0.5s ease;
 }
 
-.avatar:hover {
-    border-radius: 15px;
+.avatar-front {
+    z-index: 2;
 }
 
-.avatar img {
+.avatar-back {
+    transform: rotateY(180deg);
+}
+
+.avatar-front img, .avatar-back img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.avatar:hover img {
-    transform: scale(1.1);
 }
 
 /* About Section */
@@ -587,4 +609,64 @@ section:not(.hero) {
 .slide-section.show {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--light-text);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0.5rem;
+}
+
+header.scrolled .theme-toggle {
+    color: var(--text-color);
+}
+
+/* Dark theme variables */
+[data-theme="dark"] {
+    --text-color: #ffffff;
+    --light-text: #ffffff;
+    --dark-bg: #1a1a1a;
+    --card-bg: rgba(40, 40, 40, 0.95);
+    --gradient-start: #2d3436;
+    --gradient-end: #2d3436;
+    background-color: #1a1a1a;
+}
+
+/* Thêm gradient mới cho hero trong dark mode */
+[data-theme="dark"] .hero {
+    background: linear-gradient(135deg, #1a1a1a, #2d3436);
+    /* Hoặc có thể dùng gradient khác */
+    /* background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); */
+}
+
+/* Các style dark mode khác giữ nguyên */
+[data-theme="dark"] header.scrolled {
+    background: rgba(40, 40, 40, 0.95);
+}
+
+[data-theme="dark"] .about,
+[data-theme="dark"] .projects {
+    background: #2d3436;
+}
+
+[data-theme="dark"] .skills,
+[data-theme="dark"] .contact {
+    background: #1a1a1a;
+}
+
+[data-theme="dark"] .about-text p,
+[data-theme="dark"] .project-info p {
+    color: #cccccc;
+}
+
+[data-theme="dark"] .skill-item,
+[data-theme="dark"] .project-card,
+[data-theme="dark"] .contact-item {
+    background: rgba(40, 40, 40, 0.95);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
