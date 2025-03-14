@@ -176,6 +176,8 @@ header.scrolled .nav-links li a.active {
     font-size: 1.1rem;
     transition: all 0.3s ease;
     text-decoration: none;
+    min-width: 180px;
+    text-align: center;
 }
 
 .cta-button {
@@ -278,47 +280,78 @@ header.scrolled .nav-links li a.active {
 .skills h2 {
     font-size: 2.5rem;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 }
 
 .skills-container {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
+.skills-grid {
+    display: grid;
+    gap: 3rem;
+}
+
+.skill-category {
+    text-align: center;
+}
+
+.skill-category h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+.skill-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
 .skill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    border-radius: 10px;
     background: var(--card-bg);
-    padding: 1.5rem;
-    border-radius: 15px;
-    margin-bottom: 1rem;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    width: 100px;
 }
 
 .skill-item:hover {
     transform: translateY(-5px);
 }
 
-.skill-info {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
+.skill-item i {
+    font-size: 2.5rem;
 }
 
-.progress-bar {
-    height: 8px;
-    background: #e9ecef;
-    border-radius: 4px;
-    overflow: hidden;
+.skill-item span {
+    font-size: 0.9rem;
+    font-weight: 500;
 }
 
-.progress {
-    height: 100%;
-    background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
-    border-radius: 4px;
-    transition: width 1s ease;
-}
+/* Màu cho các icon */
+.skill-item .fa-python { color: #3776AB; }
+.skill-item .fa-java { color: #007396; }
+.skill-item .fa-php { color: #777BB4; }
+.skill-item .fa-js { color: #F7DF1E; }
+.skill-item .fa-html5 { color: #E34F26; }
+.skill-item .fa-css3-alt { color: #1572B6; }
+.skill-item .fa-bootstrap { color: #7952B3; }
+.skill-item .fa-git-alt { color: #F05032; }
+.skill-item .fa-github { color: #181717; }
+.skill-item .fa-code { color: #007ACC; }
+
+/* Thêm vào phần màu cho các icon */
+.skill-item .fa-code { color: #00599C; }  /* Màu cho C/C++ */
+.skill-item .fa-microsoft { color: #512BD4; }  /* Màu cho C# */
+.skill-item .fa-react { color: #61DAFB; }  /* Màu cho ReactJS */
 
 /* Projects Section */
 .projects {
@@ -586,6 +619,18 @@ footer {
         width: 150px;
         height: 150px;
     }
+    
+    .skill-items {
+        gap: 1rem;
+    }
+    
+    .skill-item {
+        width: 80px;
+    }
+    
+    .skill-item i {
+        font-size: 2rem;
+    }
 }
 
 /* Thêm vào phần general styles */
@@ -611,62 +656,47 @@ section:not(.hero) {
     transform: translateY(0);
 }
 
-/* Theme toggle button */
-.theme-toggle {
-    background: none;
-    border: none;
-    color: var(--light-text);
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    padding: 0.5rem;
-}
+/* Thêm media query cho màn hình nhỏ (iPhone SE) */
+@media screen and (max-width: 375px) {
+    .hero {
+        min-height: 100vh; /* Đảm bảo hero section luôn full màn hình */
+        padding-bottom: 2rem; /* Thêm padding bottom */
+    }
 
-header.scrolled .theme-toggle {
-    color: var(--text-color);
-}
+    .hero-content {
+        margin-top: 60px; /* Giảm margin-top */
+    }
 
-/* Dark theme variables */
-[data-theme="dark"] {
-    --text-color: #ffffff;
-    --light-text: #ffffff;
-    --dark-bg: #1a1a1a;
-    --card-bg: rgba(40, 40, 40, 0.95);
-    --gradient-start: #2d3436;
-    --gradient-end: #2d3436;
-    background-color: #1a1a1a;
-}
+    .hero-content h1 {
+        font-size: 2.5rem; /* Giảm kích thước font */
+        margin-bottom: 1rem;
+    }
 
-/* Thêm gradient mới cho hero trong dark mode */
-[data-theme="dark"] .hero {
-    background: linear-gradient(135deg, #1a1a1a, #2d3436);
-    /* Hoặc có thể dùng gradient khác */
-    /* background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); */
-}
+    .hero-content p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
 
-/* Các style dark mode khác giữ nguyên */
-[data-theme="dark"] header.scrolled {
-    background: rgba(40, 40, 40, 0.95);
-}
+    .hero-buttons {
+        gap: 1rem;
+        width: 100%;
+    }
 
-[data-theme="dark"] .about,
-[data-theme="dark"] .projects {
-    background: #2d3436;
-}
+    .cta-button, .cv-button {
+        padding: 0.8rem 1rem;
+        font-size: 1rem;
+        min-width: 130px;
+    }
 
-[data-theme="dark"] .skills,
-[data-theme="dark"] .contact {
-    background: #1a1a1a;
-}
+    .avatar-container {
+        width: 150px; /* Giảm kích thước avatar */
+        height: 150px;
+        margin-bottom: 1.5rem;
+    }
 
-[data-theme="dark"] .about-text p,
-[data-theme="dark"] .project-info p {
-    color: #cccccc;
-}
-
-[data-theme="dark"] .skill-item,
-[data-theme="dark"] .project-card,
-[data-theme="dark"] .contact-item {
-    background: rgba(40, 40, 40, 0.95);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    /* Điều chỉnh padding cho section about */
+    section:not(.hero) {
+        padding-top: 60px;
+        margin-top: 0;
+    }
 }
